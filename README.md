@@ -1,6 +1,6 @@
 ## How to use Dockerfile on ubuntu:
 
-# 1. Install Docker on ubuntu:
+1. Install Docker on ubuntu:
 ```
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
@@ -10,7 +10,7 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
  ```
 
-# 2. change working directory where your Dockerfile is:
+2. change working directory where your Dockerfile is:
 
-# 3. run ```#docker build .```
+3. run ```#docker build .```
 
