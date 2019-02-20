@@ -1,1 +1,20 @@
 
+# Docker basic commands
+
+
+```
+docker container ls 
+
+docker container ls -a
+
+docker images 
+
+docker image rm 
+
+docker info
+
+docker inspect <>
+
+docker inspect <>
+
+```
