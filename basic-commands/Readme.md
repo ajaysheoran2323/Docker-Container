@@ -112,9 +112,6 @@ $ docker container logs [NAME]
 $ docker container top [NAME]
 ```
 
-#### TIP: ABOUT CONTAINERS
-
-Docker containers are often compared to virtual machines but they are actually just processes running on your host os. In Windows/Mac, Docker runs in a mini-VM so to see the processes youll need to connect directly to that. On Linux however you can run "ps aux" and see the processes directly
 
 # IMAGE COMMANDS
 
@@ -142,11 +139,8 @@ $ docker image rm [IMAGE]
 $ docker rmi $(docker images -a -q)
 ```
 
-#### TIP: ABOUT IMAGES
-
-- Images are app bianaries and dependencies with meta data about the image data and how to run the image
-- Images are no a complete OS. No kernel, kernel modules (drivers)
-- Host provides the kernel, big difference between VM
+##### TIP: ABOUT IMAGES
+- Host provides the kernel, big difference between VM and container
 
 ### Some sample container creation
 
@@ -156,22 +150,10 @@ NGINX:
 $ docker container run -d -p 80:80 --name nginx nginx (-p 80:80 is optional as it runs on 80 by default)
 ```
 
-APACHE:
-
-```
-$ docker container run -d -p 8080:80 --name apache httpd
-```
-
-MONGODB:
-
-```
-$ docker container run -d -p 27017:27017 --name mongo mongo
-```
-
 MYSQL:
 
 ```
-$ docker container run -d -p 3306:3306 --name mysql --env MYSQL_ROOT_PASSWORD=123456 mysql
+$ docker container run -d -p 3306:3306 --name mysql --env MYSQL_ROOT_PASSWORD=adminajay mysql
 ```
 
 ## CONTAINER INFO
@@ -182,11 +164,6 @@ $ docker container run -d -p 3306:3306 --name mysql --env MYSQL_ROOT_PASSWORD=12
 $ docker container inspect [NAME]
 ```
 
-### Specific property (--format)
-
-```
-$ docker container inspect --format '{{ .NetworkSettings.IPAddress }}' [NAME]
-```
 
 ### Performance stats (cpu, mem, network, disk, etc)
 
@@ -202,14 +179,8 @@ $ docker container stats [NAME]
 $ docker container run -it --name [NAME] nginx bash
 ```
 
-- i = interactive Keep STDIN open if not attached
+- i = interactive 
 - t = tty - Open prompt
-
-**For Git Bash, use "winpty"**
-
-```
-$ winpty docker container run -it --name [NAME] nginx bash
-```
 
 ### Run/Create Ubuntu container
 
@@ -217,7 +188,7 @@ $ winpty docker container run -it --name [NAME] nginx bash
 $ docker container run -it --name ubuntu ubuntu
 ```
 
-**(no bash because ubuntu uses bash by default)**
+
 
 ### You can also make it so when you exit the container does not stay by using the -rm flag
 
@@ -231,107 +202,12 @@ $ docker container run --rm -it --name [NAME] ubuntu
 $ docker container start -ai ubuntu
 ```
 
-### Use exec to edit config, etc
+### Use exec to edit config, etc ( i use this to login in bash shell.. can be used "attach" also.
 
 ```
 $ docker container exec -it mysql bash
 ```
 
-### Alpine is a very small Linux distro good for docker
-
-```
-$ docker container run -it alpine sh
-```
-
-(use sh because it does not include bash)
-(alpine uses apk for its package manager - can install bash if you want)
-
-# NETWORKING
-
-### "bridge" or "docker0" is the default network
-
-### Get port
-
-```
-$ docker container port [NAME]
-```
-
-### List networks
-
-```
-$ docker network ls
-```
-
-### Inspect network
-
-```
-$ docker network inspect [NETWORK_NAME]
-("bridge" is default)
-```
-
-### Create network
-
-```
-$ docker network create [NETWORK_NAME]
-```
-
-### Create container on network
-
-```
-$ docker container run -d --name [NAME] --network [NETWORK_NAME] nginx
-```
-
-### Connect existing container to network
-
-```
-$ docker network connect [NETWORK_NAME] [CONTAINER_NAME]
-```
-
-### Disconnect container from network
-
-```
-$ docker network disconnect [NETWORK_NAME] [CONTAINER_NAME]
-```
-
-### Detach network from container
-
-```
-$ docker network disconnect
-```
-
-# IMAGE TAGGING & PUSHING TO DOCKERHUB
-
-# tags are labels that point ot an image ID
-
-```
-$ docker image ls
-```
-
-Youll see that each image has a tag
-
-### Retag existing image
-
-```
-$ docker image tag nginx btraversy/nginx
-```
-
-### Upload to dockerhub
-
-```
-$ docker image push bradtraversy/nginx
-```
-
-### If denied, do
-
-```
-$ docker login
-```
-
-### Add tag to new image
-
-```
-$ docker image tag bradtraversy/nginx bradtraversy/nginx:testing
-```
 
 ### DOCKERFILE PARTS
 
