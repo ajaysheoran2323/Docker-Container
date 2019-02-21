@@ -22,33 +22,29 @@ $ docker info
 $ docker container run -it -p 80:80 nginx      
 ```
 
-### Create an run a container in background
+### Create an run a container in background (--detach)
 
 ```
 $ docker container run -d -p 80:80 nginx
 ```
 
-### Shorthand
-
-```
-$ docker container run -d -p 80:80 nginx
-```
 
 ### Naming Containers
 
 ```
 $ docker container run -d -p 80:80 --name nginx-server nginx
 ```
+`Always put image name at last of docker commands`
 
 ### TIP: WHAT RUN DID
 
 - Looked for image called nginx in image cache
 - If not found in cache, it looks to the default image repo on Dockerhub
-- Pulled it down (latest version), stored in the image cache
+- Pull it down (latest version untill and unless you provide tags), stored in the image cache
 - Started it in a new container
-- We specified to take port 80- on the host and forward to port 80 on the container
+- We specified to take port 80- on the host and forward to port 80 on the container ```(-p host:container)```
 - We could do "$ docker container run --publish 8000:80 --detach nginx" to use port 8000
-- We can specify versions like "nginx:1.09"
+- We can specify versions like "nginx:1.01"
 
 ### List running containers
 
@@ -59,10 +55,10 @@ $ docker container ls
 OR
 
 ```
-$ docker ps
+$ docker ps (previous versions of docker, but still available, soon going to depricate)
 ```
 
-### List all containers (Even if not running)
+### List all containers (Even if not running, hidden container + running containers)
 
 ```
 $ docker container ls -a
@@ -74,7 +70,7 @@ $ docker container ls -a
 $ docker container stop [ID]
 ```
 
-### Stop all running containers
+### Stop all running containers(if you want to clear all containers)
 
 ```
 $ docker stop $(docker ps -aq)
