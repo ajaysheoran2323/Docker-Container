@@ -29,5 +29,51 @@ OR
         - "443:443"
        volumes:
         - "~/dockerfile/demo/testfile.config:/app"
+<name_of_the_service>:
+      build: ~/dockerfiles/demo/
+OR
+      image: mysql:latest
+      environtment:
+        - "MYSQL_ROOT_PASSWORD = "xxxxxxx"
+        - "MYSQL_ROOT_USER" = "xxxxxxx"
+       ports:
+        - "80:80"
+        - "443:443"
+       volumes:
+        - "~/dockerfile/demo/testfile.config:/app"
         
 ```
+
+
+## Sample `docker-compose.yml` file:
+
+```
+version: '3'
+
+services:
+   db:
+     image: mysql:latest
+     volumes:
+       - myvol1:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: randompassword
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: admin
+       MYSQL_PASSWORD: admin
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "8000:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+volumes:
+    db_data:
+```
+
