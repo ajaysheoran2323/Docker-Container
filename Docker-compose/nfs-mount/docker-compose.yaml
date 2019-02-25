@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  ubuntu:
+    image: ubuntu:latest
+    volumes:
+      - myvol1:/mnt
+    command: /bin/sh -c "while true; do echo 'OK'; sleep 2; done"
+
+volumes:
+  myvol1:
+    driver_opts:
+      type: nfs
+      o: "addr=192.168.1.1,nolock"
+      device: ":/mnt/main/"
