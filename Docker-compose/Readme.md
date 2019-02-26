@@ -114,7 +114,7 @@ A `docker-compose.yml` file is organized into four sections:
   1. Create a docker-compose file and name it `docker-compopse.yaml`
   2. Create two services in this and both are ubuntu based.
   
-  3. service one -  add environment variable for aws iam keys(check google) and copy a file from your local machine to s3 bucket ```(use 
+  3. service one -  add environment variable for aws iam keys(check google) and copy a file from your local machine to s3 bucket. Use below:
             ``` s3 bucket name: docker-compose-yaml-demo ,```
             ```use IAM keys as: access key =AKIAISHOFAZVIKCKPJUA```
             ```secret access key = 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 ```
