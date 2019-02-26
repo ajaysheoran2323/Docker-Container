@@ -122,3 +122,5 @@ A `docker-compose.yml` file is organized into four sections:
        
             HINT: You need to install `awscli` before you run copy command 
   4. service 2 -  use same s3 bucket and IAM keys and copy files from S3 to your local machine in another folder.
+  
+  TIP : Try not to mention IAM Keys in docker-compose file.
