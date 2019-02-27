@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  service2:
+    image: ubuntu:${VERSION}
+    env_file: .env
+    volumes:
+      - ./scripts:/root
+    command: /bin/bash -c "sh /root/script1.sh && aws s3 cp /root/script1.sh s3://docker-compose-yaml-demo/"
+  service2:
+    image: ubuntu:${VERSION}
+    env_file: .env
+    volumes:
+      - ./scripts:/root
+      - /home:/home
+    command: /bin/bash -c "sh /root/script1.sh && aws s3 cp s3://docker-compose-yaml-demo/script1.sh /home/"
