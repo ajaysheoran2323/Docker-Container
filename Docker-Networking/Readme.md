@@ -2,11 +2,17 @@
 # Networking basic commands:
 
 `docker network ls`
+
 `docker network rm <network-id>`
+
 `docker network create --driver bridge <network-name>`
+
 `docker network create --driver bridge --subnet --gateway --ip-range <network-name>`
+
 `docker network create --driver overlay <network-name>`
+
 `docker inspect <network-id>`
+
 
 
 ### To use docker overlay networking
@@ -17,5 +23,7 @@ Master node:
 ### TO create service(on leader node)
 
 `docker service ls `
+
 `docker service create --replicas 3 --network my-overlay-network --name nginx-serice nginx`
+
 `docker service rm <service-id>`
